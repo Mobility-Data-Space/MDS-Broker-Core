@@ -1,22 +1,21 @@
-package de.fraunhofer.iais.eis.ids.broker.persistence;
+package de.fraunhofer.iais.eis.ids.index.common.persistence;
 
 import de.fraunhofer.iais.eis.*;
-import de.fraunhofer.iais.eis.ids.index.common.persistence.ElasticsearchIndexing;
 import de.fraunhofer.iais.eis.ids.component.core.util.CalendarUtil;
 import de.fraunhofer.iais.eis.util.TypedLiteral;
-import de.fraunhofer.iais.eis.util.Util;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.junit.*;
-import org.junit.Rule;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.runners.MethodSorters;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -37,11 +36,11 @@ public class ElasticsearchIndexingTest {
     private RestHighLevelClient client;
     private ElasticsearchIndexing indexing;
 
-    @Rule
-    public GenericContainer elasticsearch = new GenericContainer("elasticsearch:6.5.4")
+    @Container
+    public GenericContainer<?> elasticsearch = new GenericContainer("elasticsearch:6.5.4")
             .withExposedPorts(9200);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         client = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("localhost", elasticsearch.getFirstMappedPort(), "http")));
@@ -50,7 +49,6 @@ public class ElasticsearchIndexingTest {
     }
 
     @Test
-    @Ignore //TODO
     public void indexingCRUD() throws IOException, DatatypeConfigurationException, URISyntaxException {
         InfrastructureComponent component = createBaseConnectorWithArtifacts();
         addToIndex(component);

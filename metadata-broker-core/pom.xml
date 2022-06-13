@@ -16,6 +16,11 @@
     <dependencies>
         <dependency>
             <groupId>de.fraunhofer.iais.eis.ids</groupId>
+            <artifactId>index-common</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.fraunhofer.iais.eis.ids</groupId>
             <artifactId>open-broker-common</artifactId>
             <version>${ids.broker.version}</version>
         </dependency>
