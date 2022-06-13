@@ -13,6 +13,8 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.*;
 import org.junit.Rule;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.testcontainers.containers.GenericContainer;
 
@@ -29,7 +31,7 @@ import java.util.GregorianCalendar;
 
 import static de.fraunhofer.iais.eis.util.Util.asList;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class ElasticsearchIndexingTest {
 
     private RestHighLevelClient client;

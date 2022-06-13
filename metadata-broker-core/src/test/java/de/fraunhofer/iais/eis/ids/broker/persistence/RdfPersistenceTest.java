@@ -6,9 +6,8 @@ import de.fraunhofer.iais.eis.ids.component.core.RejectMessageException;
 import de.fraunhofer.iais.eis.ids.index.common.persistence.NullIndexing;
 import de.fraunhofer.iais.eis.ids.index.common.persistence.RepositoryFacade;
 import de.fraunhofer.iais.eis.util.TypedLiteral;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URI;
@@ -18,13 +17,14 @@ import java.util.Collection;
 import java.util.Collections;
 
 import static de.fraunhofer.iais.eis.util.Util.asList;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RdfPersistenceTest {
 
     private SelfDescriptionPersistenceAndIndexing persistence;
     private RepositoryFacade repositoryFacade;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         repositoryFacade = new RepositoryFacade();
         try {
@@ -42,13 +42,13 @@ public class RdfPersistenceTest {
             persistence.updated(createConnector());
             persistence.updated(createConnector());
 
-            Assert.assertTrue(sizeBeforeIngest < repositoryFacade.getSize());
-            Assert.assertEquals(3, repositoryFacade.getContextIds().size());
+            assertTrue(sizeBeforeIngest < repositoryFacade.getSize());
+            assertEquals(3, repositoryFacade.getContextIds().size());
         }
         catch (IOException | RejectMessageException e)
         {
             e.printStackTrace();
-            Assert.fail();
+            fail();
         }
     }
 
@@ -87,13 +87,13 @@ public class RdfPersistenceTest {
             connector.setInboundModelVersion(updatedList);
 
             persistence.updated(connector);
-            Assert.assertTrue(repositoryFacade.getConnectorFromTripleStore(URI.create("http://localhost:8080/connectors/" + connector.getId().hashCode())).getInboundModelVersion().contains("3.0.0"));
+            assertTrue(repositoryFacade.getConnectorFromTripleStore(URI.create("http://localhost:8080/connectors/" + connector.getId().hashCode())).getInboundModelVersion().contains("3.0.0"));
             //Assert.assertTrue(repositoryFacade.getConnectorFromTripleStore(connector.getId()).getInboundModelVersion().contains("3.0.0"));
         }
         catch (IOException | RejectMessageException e)
         {
             e.printStackTrace();
-            Assert.fail();
+            fail();
         }
     }
 
@@ -109,7 +109,7 @@ public class RdfPersistenceTest {
             //Make it available
             persistence.updated(connector1);
             int sizeGraph1 = repositoryFacade.getSize();
-            Assert.assertEquals(sizeGraph1, sizeBeforeIngest + 1);
+            assertEquals(sizeGraph1, sizeBeforeIngest + 1);
 
 
 
@@ -117,17 +117,17 @@ public class RdfPersistenceTest {
             long sizeGraph1And2 = repositoryFacade.getSize();
 
             //Assert.assertEquals(3, repositoryFacade.getContextIds().size());
-            Assert.assertEquals(sizeGraph1And2, sizeGraph1 + 1);
+            assertEquals(sizeGraph1And2, sizeGraph1 + 1);
 
             persistence.unavailable(connector2.getId());
-            Assert.assertEquals(repositoryFacade.getSize(), sizeGraph1);
+            assertEquals(repositoryFacade.getSize(), sizeGraph1);
             persistence.unavailable(connector1.getId());
-            Assert.assertEquals(repositoryFacade.getSize(), sizeBeforeIngest);
+            assertEquals(repositoryFacade.getSize(), sizeBeforeIngest);
         }
         catch (IOException | RejectMessageException e)
         {
             e.printStackTrace();
-            Assert.fail();
+            fail();
         }
     }
 
@@ -139,7 +139,7 @@ public class RdfPersistenceTest {
         catch (IOException | RejectMessageException e)
         {
             e.printStackTrace();
-            Assert.fail();
+            fail();
         }
         String query = "SELECT * WHERE {?connector a <https://w3id.org/idsa/core/BaseConnector>}";
         String queryResult = persistence.getResults(query);
@@ -147,7 +147,7 @@ public class RdfPersistenceTest {
 
         //The SPARQL Queries are rewritten by the SparqlQueryRewriter to make sure that the query is evaluated on all active graphs
         //For this, a new variable is introduced, ?__RESERVED, containing the name of the original graph. We should probably rename this
-        Assert.assertTrue(queryResult.contains("?__RESERVED"));
-        Assert.assertTrue(queryResult.contains("http://"));
+        assertTrue(queryResult.contains("?__RESERVED"));
+        assertTrue(queryResult.contains("http://"));
     }
 }

@@ -1,13 +1,9 @@
 package de.fraunhofer.iais.eis.ids.index.common.endpoint;
 
 import de.fraunhofer.iais.eis.ids.index.common.persistence.RepositoryFacade;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.core.env.Environment;
 
 
 /**

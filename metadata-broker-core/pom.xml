@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>de.fraunhofer.iais.eis.ids</groupId>
         <artifactId>broker-mds-core-container</artifactId>
@@ -15,41 +16,23 @@
     <dependencies>
         <dependency>
             <groupId>de.fraunhofer.iais.eis.ids</groupId>
-            <artifactId>broker-common</artifactId>
-            <version>${revision}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>de.fraunhofer.iais.eis.ids.infomodel</groupId>
-                    <artifactId>java</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>open-broker-common</artifactId>
+            <version>${ids.broker.version}</version>
         </dependency>
         <dependency>
-            <groupId>de.fraunhofer.iais.eis.ids</groupId>
-            <artifactId>mds-elasticsearch-indexing-provider</artifactId>
-            <version>${revision}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>de.fraunhofer.iais.eis.ids.infomodel</groupId>
-                    <artifactId>java</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>de.fraunhofer.iais.eis.ids.mdp-infomodel</groupId>
-                    <artifactId>java</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>de.fraunhofer.iais.eis.ids.infomodel</groupId>
-            <artifactId>java</artifactId>
-            <version>${ids-components.version}</version>
+            <groupId>ids.messaging</groupId>
+            <artifactId>messaging</artifactId>
+            <version>${ids.messaging.version}</version>
         </dependency>
 
-        <!-- JSON -->
         <dependency>
-            <groupId>com.vaadin.external.google</groupId>
-            <artifactId>android-json</artifactId>
-            <version>0.0.20131108.vaadin1</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -114,34 +97,11 @@
         </profile>
     </profiles>
 
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <release>11</release>
-                    <encoding>UTF-8</encoding>
-                    <source>15</source>
-                    <target>15</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                        <configuration>
-                            <mainClass>de.fraunhofer.iais.eis.ids.broker.main.Main</mainClass>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

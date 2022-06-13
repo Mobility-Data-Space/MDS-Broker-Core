@@ -3,7 +3,6 @@ package de.fraunhofer.iais.eis.ids.index.common.main;
 import de.fraunhofer.iais.eis.ids.index.common.persistence.logging.VerifyingRollingFileAppender;
 import de.fraunhofer.iais.eis.ids.index.common.util.CryptoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;

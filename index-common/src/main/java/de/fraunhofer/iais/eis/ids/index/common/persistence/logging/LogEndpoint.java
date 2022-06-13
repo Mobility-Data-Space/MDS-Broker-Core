@@ -1,6 +1,5 @@
 package de.fraunhofer.iais.eis.ids.index.common.persistence.logging;
 
-import de.fraunhofer.iais.eis.QueryMessageBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
