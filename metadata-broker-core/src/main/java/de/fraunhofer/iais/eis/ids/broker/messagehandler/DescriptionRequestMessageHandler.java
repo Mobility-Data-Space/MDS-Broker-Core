@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @author Sebastian Lorenz (sebastian.lorenz(at)ivi.fraunhofer.de
+ */
 @Component
 @SupportedMessageType(DescriptionRequestMessageImpl.class)
 public class DescriptionRequestMessageHandler extends AbstractMessageHandler<DescriptionRequestMessage> {

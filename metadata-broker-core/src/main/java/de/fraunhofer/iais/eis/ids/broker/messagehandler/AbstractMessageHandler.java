@@ -21,6 +21,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Slf4j
+/**
+ * MessageHandler with implementation for standard massage handler tasks.
+ *
+ * @author Sebastian Lorenz (sebastian.lorenz(at)ivi.fraunhofer.de
+ */
 public abstract class AbstractMessageHandler<T extends Message> implements MessageHandler<T> {
 
     @Autowired
@@ -71,5 +76,12 @@ public abstract class AbstractMessageHandler<T extends Message> implements Messa
         }
     }
 
+    /**
+     * Message handling for specific messages.
+     *
+     * @param message the header part of the incoming IDS Message.
+     * @param payload the payload part of the incoming IDS Message.
+     * @return the response.
+     */
     public abstract MessageResponse handleMessage(T message, String payload);
 }

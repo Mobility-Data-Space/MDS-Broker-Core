@@ -11,6 +11,9 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Sebastian Lorenz (sebastian.lorenz(at)ivi.fraunhofer.de
+ */
 @Component
 @SupportedMessageType(ConnectorUpdateMessageImpl.class)
 public class ConnectorUpdateMessageHandler extends AbstractMessageHandler<ConnectorUpdateMessage> {

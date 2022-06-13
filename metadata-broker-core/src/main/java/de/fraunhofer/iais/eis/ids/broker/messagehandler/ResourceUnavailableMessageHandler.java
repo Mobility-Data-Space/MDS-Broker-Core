@@ -9,6 +9,9 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Sebastian Lorenz (sebastian.lorenz(at)ivi.fraunhofer.de
+ */
 @Component
 @SupportedMessageType(ResourceUnavailableMessageImpl.class)
 public class ResourceUnavailableMessageHandler extends AbstractMessageHandler<ResourceUnavailableMessage> {

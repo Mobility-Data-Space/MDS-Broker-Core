@@ -18,6 +18,9 @@ import org.springframework.context.annotation.ComponentScan;
 import java.net.URI;
 import java.util.ServiceLoader;
 
+/**
+ * @author Sebastian Lorenz (sebastian.lorenz(at)ivi.fraunhofer.de
+ */
 @ComponentScan({
         "de.fraunhofer.iais.eis.ids.broker",
         "ids.*",

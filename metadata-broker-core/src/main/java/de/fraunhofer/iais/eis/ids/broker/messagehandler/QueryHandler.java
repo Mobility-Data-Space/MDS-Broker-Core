@@ -16,6 +16,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * @author Sebastian Lorenz (sebastian.lorenz(at)ivi.fraunhofer.de
+ */
 @Component
 @SupportedMessageType(QueryMessageImpl.class)
 public class QueryHandler extends AbstractMessageHandler<QueryMessage> {
